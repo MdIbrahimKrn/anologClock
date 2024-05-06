@@ -1,0 +1,139 @@
+
+*,*::after,*::before{
+    margin:0;
+    padding:0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+:root{
+    --clock-size:300px;
+    --rotation:0;
+    --pin-width:10px;
+    --pin-height:45%;
+    --pin-color:#000;
+    --primary-color: #666;
+    --mark-width:5;
+}
+body{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack:center;
+        -ms-flex-pack:center;
+            justify-content:center;
+    -webkit-box-align:center;
+        -ms-flex-align:center;
+            align-items:center;
+    height:100vh;
+    background-color: var(--primary-color);
+}
+
+.clock{
+    height:var(--clock-size);
+    width:var(--clock-size);
+    background-color: beige;
+    border-radius:100%;
+    position: relative;
+    border:4px solid var(--primary-color);
+    -webkit-box-shadow: 1px 1px 20px var(--pin-color);
+            box-shadow: 1px 1px 20px var(--pin-color);
+}
+
+.clock .mark{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    text-align: center;
+    -webkit-transform: rotate(calc(var(--rotation)*6deg)) ;
+        -ms-transform: rotate(calc(var(--rotation)*6deg)) ;
+            transform: rotate(calc(var(--rotation)*6deg)) ;
+}
+
+.mark::after{
+    content: '';
+    height: 10px;
+    width: calc(var(--mark-width)*1px);
+    left: 50%;
+    position: absolute;
+    background-color: var(--pin-color);
+    -webkit-transform: translate(-50%) ;
+        -ms-transform: translate(-50%) ;
+            transform: translate(-50%) ;
+    
+}
+
+.clock::after{
+    position:absolute;
+    content: "";
+    width:calc(var(--pin-width)*1.6);
+    height:calc(var(--pin-width)*1.6);
+    top:50%;
+    left: 50%;
+    border: 1px solid var(--primary-color);
+    border-radius: 100%;
+    background-color: var(--pin-color);
+    -webkit-transform:translate(-50%,-50%);
+        -ms-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);
+    z-index: 10;
+    
+}
+
+.clock .number{
+    position:absolute;
+    height:100%;
+    width: 100%;
+    text-align:center;
+    font-size:1.5rem;
+    -webkit-transform:rotate(var(--rotation));
+        -ms-transform:rotate(var(--rotation));
+            transform:rotate(var(--rotation))
+}
+
+.clock .number1{--rotation:30deg}
+.clock .number2{--rotation:60deg}
+.clock .number3{--rotation:90deg}
+.clock .number4{--rotation:120deg}
+.clock .number5{--rotation:150deg}
+.clock .number6{--rotation:180deg}
+.clock .number7{--rotation:210deg}
+.clock .number8{--rotation:2400deg}
+.clock .number9{--rotation:270deg}
+.clock .number10{--rotation:300deg}
+.clock .number11{--rotation:330deg}
+
+.clock .pin{
+    position: absolute;
+    width: var(--pin-width);
+    height: var(--pin-height);
+    background-color: var(--pin-color);
+    left:50%;
+    bottom:50%;
+    border : 1px solid var(--primary-color);
+    border-radius:100% 100% 0 0;
+    -webkit-transform-origin: bottom;
+        -ms-transform-origin: bottom;
+            transform-origin: bottom;
+    -webkit-transform:translateX(-50%) rotate(calc(var(--rotation)*1deg));
+        -ms-transform:translateX(-50%) rotate(calc(var(--rotation)*1deg));
+            transform:translateX(-50%) rotate(calc(var(--rotation)*1deg))
+}
+
+.clock .pin.seconds{
+    width:calc(var(--pin-width)*.3);
+    height:calc(var(--pin-height)*.9);
+    background-color: red;
+    z-index: 3;
+}
+
+
+.clock .pin.minutes{
+    width:calc(var(--pin-width)*.8);
+    height:calc(var(--pin-height)*.8);
+    z-index: 2;
+}
+.clock .pin.hours{
+    height:calc(var(--pin-height)*.6);
+    z-index: 1;  
+}
